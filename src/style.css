@@ -12,7 +12,7 @@
 
 body {
   font-family: 'Lato', sans-serif;
-  background: rgb(211,211,211);
+  background: rgb(211, 211, 211);
 }
 
 .container {
@@ -31,7 +31,7 @@ hr {
 
 h4 {
   font-size: 1.3rem;
-  color: rgb(105,105,105);
+  color: rgb(105, 105, 105);
   font-weight: 400;
 }
 
@@ -58,7 +58,7 @@ li {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  color: rgb(105,105,105);
+  color: rgb(105, 105, 105);
   font-size: 1.1rem;
   padding: 1rem 0;
 }
@@ -72,13 +72,13 @@ input[type='text'] {
   padding: 10px;
   background: transparent;
   margin-left: -1.3rem;
-  color: rgb(105,105,105);
+  color: rgb(105, 105, 105);
   font-style: italic;
   font-size: 1.2rem;
 }
 
 #new-task::placeholder {
-  color: rgb(105,105,105);
+  color: rgb(105, 105, 105);
   font-style: italic;
   font-size: 1.2rem;
 }
@@ -110,7 +110,7 @@ i {
 }
 
 .title i {
-  color: rgb(105,105,105);
+  color: rgb(105, 105, 105);
 }
 
 button[type='submit'] {
@@ -120,7 +120,7 @@ button[type='submit'] {
   cursor: pointer;
   outline: none;
   margin-left: 0.5rem;
-  color: rgb(105,105,105);
+  color: rgb(105, 105, 105);
 }
 
 span {
@@ -141,7 +141,7 @@ a {
   margin: 2rem auto 0;
   font-size: 1.3rem;
   font-weight: 400;
-  color: rgb(105,105,105);
+  color: rgb(105, 105, 105);
 }
 
 a:hover {
