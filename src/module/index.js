@@ -118,5 +118,4 @@ editTaskDescription = (task) => {
   listItemElement.replaceChild(inputElement, listItemElement.children[1]);
   inputElement.select();
 };
-
 export { updateTaskIndexes, renderTaskList, createTaskLists };
