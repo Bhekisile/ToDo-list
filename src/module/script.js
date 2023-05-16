@@ -15,7 +15,6 @@ const clearCompletedTasks = () => {
 };
 
 const clearCompleted = document.getElementById('clear');
-clearCompleted.addEventListener('click', (event) => {
-  event.preventDefault();
+clearCompleted.addEventListener('click', () => {
   clearCompletedTasks();
 });
