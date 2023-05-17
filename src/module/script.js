@@ -9,12 +9,13 @@ const saveTasks = () => {
 // Clearing completed
 const clearCompletedTasks = () => {
   tasks = tasks.filter((task) => !task.completed);
+  renderTaskList();
   updateTaskIndexes();
   saveTasks();
-  renderTaskList();
 };
 
 const clearCompleted = document.getElementById('clear');
-clearCompleted.addEventListener('click', () => {
+clearCompleted.addEventListener('click', (event) => {
+  event.preventDefault();
   clearCompletedTasks();
 });

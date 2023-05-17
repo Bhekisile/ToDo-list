@@ -3,6 +3,7 @@ let deleteTask;
 let editTaskDescription;
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
 const saveTasks = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
@@ -15,16 +16,60 @@ const markAsIncomplete = (task) => {
   task.completed = false;
 };
 
-const createTaskLists = (task) => {
-  const deleteButton = document.createElement('button');
-  const listItemElement = document.createElement('li');
-  const iconElement = document.createElement('i');
-  const descriptionElement = document.createElement('span');
-
+// Create checkbox element
+const createCheckbox = (completed) => {
   const checkboxElement = document.createElement('input');
   checkboxElement.type = 'checkbox';
-  checkboxElement.checked = task.completed;
-  checkboxElement.addEventListener('change', () => {
+  checkboxElement.checked = completed;
+  return checkboxElement;
+};
+
+// Create description element
+const createDescription = (description) => {
+  const descriptionElement = document.createElement('span');
+  descriptionElement.textContent = description;
+  descriptionElement.addEventListener('click', (event) => {
+    event.preventDefault();
+    editTaskDescription();
+  });
+  return descriptionElement;
+};
+
+// Create icon element
+const createIcon = () => {
+  const iconElement = document.createElement('i');
+  iconElement.classList.add('uil', 'uil-ellipsis-v');
+  iconElement.addEventListener('click', (event) => {
+    event.preventDefault();
+    editTaskDescription();
+  });
+  return iconElement;
+};
+
+// Create delete button element
+const createDeleteButton = (index) => {
+  const deleteButton = document.createElement('button');
+  deleteButton.innerHTML = '<i class="uil uil-trash"></i>';
+  deleteButton.classList.add('delete-button');
+  deleteButton.style.display = 'none';
+  deleteButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log(index);
+    deleteTask(index);
+    saveTasks();
+  });
+  return deleteButton;
+};
+
+// Create task list item element
+const createTaskListItem = (task) => {
+  const listItemElement = document.createElement('li');
+  const checkboxElement = createCheckbox(task.completed);
+  const descriptionElement = createDescription(task.description);
+  const iconElement = createIcon();
+  const deleteButton = createDeleteButton(task.index);
+  checkboxElement.addEventListener('change', (event) => {
+    event.preventDefault();
     if (checkboxElement.checked) {
       markAsCompleted(task);
     } else {
@@ -32,7 +77,7 @@ const createTaskLists = (task) => {
     }
     saveTasks();
 
-    //  Check if the checkbox is now checked
+    // Check if the checkbox is now checked
     if (checkboxElement.checked) {
       deleteButton.style.display = 'block';
       iconElement.style.display = 'none';
@@ -46,33 +91,15 @@ const createTaskLists = (task) => {
     }
   });
 
-  descriptionElement.textContent = task.description;
-
-  descriptionElement.addEventListener('click', () => {
-    editTaskDescription(task);
-  });
-
   listItemElement.appendChild(checkboxElement);
   listItemElement.appendChild(descriptionElement);
-
-  iconElement.classList.add('uil', 'uil-ellipsis-v');
-  iconElement.addEventListener('click', () => {
-    editTaskDescription(task);
-  });
   listItemElement.appendChild(iconElement);
-
-  deleteButton.innerHTML = '<i class="uil uil-trash"></i>';
-  deleteButton.classList.add('delete-button');
-  deleteButton.style.display = 'none';
-
-  deleteButton.addEventListener('click', () => {
-    deleteTask(task.index);
-  });
-
   listItemElement.appendChild(deleteButton);
-
   return listItemElement;
 };
+
+// Main function
+const createTaskLists = (task) => createTaskListItem(task);
 
 const renderTaskList = () => {
   taskList.innerHTML = '';
