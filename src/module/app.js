@@ -5,6 +5,7 @@ import './script.js';
 const taskList = document.getElementById('task-list');
 const newTask = document.getElementById('new-task');
 const form = document.querySelector('form');
+
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 function addNewTask(description) {

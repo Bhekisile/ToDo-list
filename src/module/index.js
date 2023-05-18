@@ -16,60 +16,17 @@ const markAsIncomplete = (task) => {
   task.completed = false;
 };
 
-// Create checkbox element
-const createCheckbox = (completed) => {
+const createTaskLists = (task) => {
+  const deleteButton = document.createElement('button');
+  const listItemElement = document.createElement('li');
+  const iconElement = document.createElement('i');
+  const descriptionElement = document.createElement('span');
+
   const checkboxElement = document.createElement('input');
   checkboxElement.type = 'checkbox';
-  checkboxElement.checked = completed;
-  return checkboxElement;
-};
+  checkboxElement.checked = task.completed;
 
-// Create description element
-const createDescription = (description) => {
-  const descriptionElement = document.createElement('span');
-  descriptionElement.textContent = description;
-  descriptionElement.addEventListener('click', (event) => {
-    event.preventDefault();
-    editTaskDescription();
-  });
-  return descriptionElement;
-};
-
-// Create icon element
-const createIcon = () => {
-  const iconElement = document.createElement('i');
-  iconElement.classList.add('uil', 'uil-ellipsis-v');
-  iconElement.addEventListener('click', (event) => {
-    event.preventDefault();
-    editTaskDescription();
-  });
-  return iconElement;
-};
-
-// Create delete button element
-const createDeleteButton = (index) => {
-  const deleteButton = document.createElement('button');
-  deleteButton.innerHTML = '<i class="uil uil-trash"></i>';
-  deleteButton.classList.add('delete-button');
-  deleteButton.style.display = 'none';
-  deleteButton.addEventListener('click', (event) => {
-    event.preventDefault();
-    console.log(index);
-    deleteTask(index);
-    saveTasks();
-  });
-  return deleteButton;
-};
-
-// Create task list item element
-const createTaskListItem = (task) => {
-  const listItemElement = document.createElement('li');
-  const checkboxElement = createCheckbox(task.completed);
-  const descriptionElement = createDescription(task.description);
-  const iconElement = createIcon();
-  const deleteButton = createDeleteButton(task.index);
-  checkboxElement.addEventListener('change', (event) => {
-    event.preventDefault();
+  checkboxElement.addEventListener('change', () => {
     if (checkboxElement.checked) {
       markAsCompleted(task);
     } else {
@@ -77,7 +34,7 @@ const createTaskListItem = (task) => {
     }
     saveTasks();
 
-    // Check if the checkbox is now checked
+    //  Check if the checkbox is now checked
     if (checkboxElement.checked) {
       deleteButton.style.display = 'block';
       iconElement.style.display = 'none';
@@ -91,21 +48,38 @@ const createTaskListItem = (task) => {
     }
   });
 
+  descriptionElement.textContent = task.description;
+
+  descriptionElement.addEventListener('click', () => {
+    editTaskDescription(task);
+  });
+
   listItemElement.appendChild(checkboxElement);
   listItemElement.appendChild(descriptionElement);
+
+  iconElement.classList.add('uil', 'uil-ellipsis-v');
+  iconElement.addEventListener('click', () => {
+    editTaskDescription(task);
+  });
   listItemElement.appendChild(iconElement);
+
+  deleteButton.innerHTML = '<i class="uil uil-trash"></i>';
+  deleteButton.classList.add('delete-button');
+  deleteButton.style.display = 'none';
+
+  deleteButton.addEventListener('click', () => {
+    deleteTask(task.index);
+  });
+
   listItemElement.appendChild(deleteButton);
+
   return listItemElement;
 };
-
-// Main function
-const createTaskLists = (task) => createTaskListItem(task);
-
 const renderTaskList = () => {
   taskList.innerHTML = '';
 
   tasks
-    .sort((task1, task2) => task1.index - task2.index)
+    .sort((task1, tasks2) => task1.index - tasks2.index)
     .forEach((task) => {
       const listItemElement = createTaskLists(task);
       taskList.appendChild(listItemElement);
@@ -145,4 +119,6 @@ editTaskDescription = (task) => {
   listItemElement.replaceChild(inputElement, listItemElement.children[1]);
   inputElement.select();
 };
-export { updateTaskIndexes, renderTaskList, createTaskLists };
+export {
+  updateTaskIndexes, renderTaskList, createTaskLists, saveTasks,
+};
