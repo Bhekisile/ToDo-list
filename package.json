@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "A simple list of To Do tasks built using webpack and served by a webpack dev server.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist",
     "build": "webpack",
     "dev": "webpack server"
   },
   "keywords": [],
-  "author": "",
+  "author": "Bhekisile Jozi",
   "license": "ISC",
+  "homepage": "https://bhekisile.github.io/ToDo-list/",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.3",
@@ -26,5 +27,8 @@
     "webpack": "^5.81.0",
     "webpack-cli": "^5.0.2",
     "webpack-dev-server": "^4.13.3"
+  },
+  "dependencies": {
+    "gh-pages": "^5.0.0"
   }
 }
