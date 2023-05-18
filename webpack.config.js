@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development', // production
   entry: {
-    main: path.resolve(__dirname, 'src/module/app.js'),
+    bundle: path.resolve(__dirname, 'src/app.js'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -27,25 +27,14 @@ module.exports = {
     rules: [
       // css
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-      // images
-      { test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/, type: 'asset/resource' },
-      // js for babel
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
-        },
-      },
     ],
   },
 
   // plugins
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'ToDo-list',
+      filename: 'index.html',
       template: './src/index.html',
     }),
   ],
