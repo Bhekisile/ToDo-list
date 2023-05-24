@@ -35,9 +35,9 @@ hr {
   margin-top: 1rem;
 }
 
-h4 {
+h1 {
   font-size: 1.3rem;
-  color: rgb(105, 105, 105);
+  color: #808080;
   font-weight: 400;
 }
 
@@ -64,7 +64,7 @@ li {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  color: rgb(105, 105, 105);
+  color: #808080;
   font-size: 1.1rem;
   padding: 1rem 0;
 }
@@ -78,12 +78,12 @@ input[type="text"] {
   padding: 10px;
   background: transparent;
   margin-left: -1.3rem;
-  color: rgb(105, 105, 105);
+  color: #808080;
   font-size: 1.2rem;
 }
 
 #new-task::placeholder {
-  color: rgb(105, 105, 105);
+  color: #808080;
   font-size: 1.2rem;
   font-family: "Playfair Display", serif;
   opacity: 0.7;
@@ -116,7 +116,7 @@ i {
 }
 
 .title i {
-  color: rgb(105, 105, 105);
+  color: #808080;
 }
 
 button[type="submit"] {
@@ -126,7 +126,7 @@ button[type="submit"] {
   cursor: pointer;
   outline: none;
   margin-left: 0.5rem;
-  color: rgb(105, 105, 105);
+  color: #808080;
 }
 
 span {
@@ -144,13 +144,20 @@ input[type="checkbox"]:checked + span {
 
 a {
   display: block;
-  text-align: center;
+  /* text-align: center; */
   margin: 2rem auto 0;
   font-size: 1.3rem;
   font-weight: 400;
-  color: rgb(105, 105, 105);
+  color: #808080;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: #dbe1ec;
 }
 
 a:hover {
-  text-decoration: underline;
+  transition: 0.5s ease-in-out;
+  background-color: rgb(155, 186, 219);
 }
