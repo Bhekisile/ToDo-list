@@ -1,4 +1,4 @@
-import './style.css';
+// import './style.css';
 import createTask from '../module/createTask.js';
 
 const taskList = document.getElementById('task-list');
@@ -145,4 +145,11 @@ if (form) {
 renderTasks();
 window.addEventListener('load', renderTasks);
 
-export { markAsCompleted, markAsIncomplete, saveTasks };
+module.exports = {
+  tasks,
+  addNewTask,
+  deleteTask,
+  clearCompletedTasks,
+  markAsCompleted,
+  markAsIncomplete,
+};
